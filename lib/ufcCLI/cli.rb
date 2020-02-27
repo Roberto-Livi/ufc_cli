@@ -1,4 +1,4 @@
-class UfcCli::class
+class UFCcli::CLI
     def start
         puts "Hello there!"
     end
