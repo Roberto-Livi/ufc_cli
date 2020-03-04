@@ -11,7 +11,6 @@
 # Stance: soc.css(".wisbb_playerData tr").children[23].text
 
 class UfcCLI::Scraper
-    @@url_array = []
 
     def rankings_page
         Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
