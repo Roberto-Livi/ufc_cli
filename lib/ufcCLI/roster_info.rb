@@ -1,7 +1,7 @@
 # First Name: soc.css("span.wisbb_firstName").text
 # Last Name: soc.css("span.wisbb_lastName").text
 # Nickname: soc.css(".wisbb_secondaryInfo span").children[0].text
-# D.O.B: doc.css(".wisbb_playerData tr").children[3].text
+# D.O.B: doc.css(".wisbb_playerData td").children[1].text
 # Weight Class: soc.css(".wisbb_secondaryInfo span").children[2].text
 # Location: soc.css(".wisbb_playerData tr").children[13].text.strip
 # Reach: soc.css(".wisbb_playerData tr").children[18].text
