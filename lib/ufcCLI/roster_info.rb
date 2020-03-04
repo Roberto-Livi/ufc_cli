@@ -1,6 +1,6 @@
 class UfcCLI::RosterInfo
 
-    attr_accessor :name, :dob, :nickname, :weight_class, :location, :stance
+    attr_accessor :name, :dob, :nickname, :weight_class, :location
 
     @@all = []
 
