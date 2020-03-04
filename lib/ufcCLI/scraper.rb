@@ -42,41 +42,42 @@ class UfcCLI::Scraper
     def scrape_pound_for_pound
         puts "Loading the best Pound for Pound fighters in UFC"
         time = 14
-        count = 16
-        counts = 1
+        url = 16
+        count = 1
         num_of_urls = 16
-        while counts != num_of_urls
-            if self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/alex-volkanovski-fighter-stats")
-                counts += 1
+        while count != num_of_urls
+            if self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/alex-volkanovski-fighter-stats")
                 count += 1
+                url += 1
             else
-                UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value)
+                UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
                 puts time
                 time -= 1
-                counts += 1
                 count += 1
+                url += 1
             end
         end
     end
 
-    # def scrape_pound_for_pound
-    #     puts "Loading the best Pound for Pound fighters in UFC"
-    #     time = 14
-    #     count = 16
-    #     counts = 1
-    #     num_of_urls = 15
-    #     while counts != num_of_urls
-    #         if self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/alex-volkanovski-fighter-stats")
-    #             counts += 1
-    #         else
-    #             UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value)
-    #             puts time
-    #         time -= 1
-    #         counts += 1
-    #         end
-    #     end
-    # end
-
+    def scrape_light_heavyweights
+        puts "Loading UFC Light Heavyweights"
+        time = 14
+        url = 16
+        count = 1
+        num_of_urls = 16
+        while count != num_of_urls
+            if self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/alex-volkanovski-fighter-stats")
+                count += 1
+                url += 1
+            else
+                UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
+                puts time
+                time -= 1
+                count += 1
+                url += 1
+            end
+        end
+    end
 
 end
 

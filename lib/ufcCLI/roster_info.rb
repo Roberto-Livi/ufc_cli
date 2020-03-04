@@ -13,8 +13,6 @@ class UfcCLI::RosterInfo
 
     @@all = []
 
-# dob = nil, nickname = nil
-
     def initialize(name = nil, dob = nil, nickname = nil, location = nil, weight_class = nil)
         @name = name
         @dob = dob
@@ -63,10 +61,11 @@ class UfcCLI::RosterInfo
         input = gets.strip
         @@all.find do |f|
             if f.name == random_fighter
-                if f.nickname.downcase.strip == input.downcase
+                if f.nickname.downcase.strip == "\"#{input.downcase}\""
                     puts "Correct!"
                 else
                     puts "Incorrect"
+                    puts "The answer was #{f.nickname}"
                 end
             end
         end
@@ -112,25 +111,6 @@ class UfcCLI::RosterInfo
                 end
             end
         end
-
-
-    # def self.guess_fighters_nickname
-    #     puts "Input fighter name to get their nickname? "
-    #     input = gets.strip
-    #     @@all.find do |fighter|
-    #         if fighter.name.downcase == input.downcase
-    #             puts fighter.nickname
-    #         end
-    #     end
-    #     puts "Do you want to play again? y/n"
-    #     again = gets.strip
-    #     if again == "y"
-    #         self.get_fighters_nickname
-    #     else
-    #         puts "Goodbye"
-    #     end
-    # end
-
 
     # custom instance methods if needed
 
