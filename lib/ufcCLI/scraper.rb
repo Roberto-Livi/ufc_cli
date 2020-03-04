@@ -65,7 +65,7 @@ class UfcCLI::Scraper
         time = 15
         url = 31
         count = 1
-        num_of_urls = 16
+        num_of_urls = 17
         while count != num_of_urls
             UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
             puts time
@@ -80,7 +80,7 @@ class UfcCLI::Scraper
         time = 15
         url = 47
         count = 1
-        num_of_urls = 16
+        num_of_urls = 17
         while count != num_of_urls
             if self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/paulo-borrachinha-fighter-stats")
                 count += 1
@@ -100,9 +100,64 @@ class UfcCLI::Scraper
         time = 15
         url = 63
         count = 1
-        num_of_urls = 16
+        num_of_urls = 17
+        while count != num_of_urls
+            UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
+            puts time
+            time -= 1
+            count += 1
+            url += 1
+        end
+    end
+
+    def scrape_lightweights
+        puts "Loading UFC Lightweights"
+        time = 15
+        url = 79
+        count = 1
+        num_of_urls = 17
         while count != num_of_urls
             if self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/carlos-diego-ferreira-fighter-stats")
+                count += 1
+                url += 1
+            else
+                UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
+                puts time
+                time -= 1
+                count += 1
+                url += 1
+            end
+        end
+    end
+
+    def scrape_featherweights
+        puts "Loading UFC Featherweights"
+        time = 15
+        url = 95
+        count = 1
+        num_of_urls = 17
+        while count != num_of_urls
+            if self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/alex-volkanovski-fighter-stats")
+                count += 1
+                url += 1
+            else
+                UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
+                puts time
+                time -= 1
+                count += 1
+                url += 1
+            end
+        end
+    end
+
+    def scrape_bantamweights
+        puts "Loading UFC Men's Bantamweights"
+        time = 15
+        url = 111
+        count = 1
+        num_of_urls = 17
+        while count != num_of_urls
+            if self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/casey-kenney-fighter-stats")
                 count += 1
                 url += 1
             else
@@ -118,4 +173,4 @@ class UfcCLI::Scraper
 
 end
 
-# self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/carlos-diego-ferreira-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/casey-kenney-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/deiveson-alcantara-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/askar-askarov-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/timothy-elliott-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/jordan-espinosa-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/weili-zhang-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/amanda-ribas-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/sergey-pavlovich-fighter-stats")
+# self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/deiveson-alcantara-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/askar-askarov-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/timothy-elliott-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/jordan-espinosa-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/weili-zhang-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/amanda-ribas-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/sergey-pavlovich-fighter-stats")

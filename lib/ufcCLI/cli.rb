@@ -20,12 +20,18 @@ class UfcCLI::CLI
     # doc.css("span.wisbb_leaderTitle").each {|weight| weight_class << weight.text}
 
 
-    # @@all_fighters = []
     @@o_h = 0
     @@o_pfp = 0
     @@o_lh = 0
     @@o_mw = 0
     @@o_ww = 0
+    @@o_lw = 0
+    @@o_fw = 0
+    @@o_bw = 0
+    @@o_flyweight = 0
+    @@o_wb = 0
+    @@o_ws = 0
+
 
 
     def start
@@ -38,7 +44,7 @@ class UfcCLI::CLI
         if input  == "1"
 
             puts "Which weight class would you like to see?"
-            puts "1) Pound for Pound\n2) Heavyweight\n3) Light Heavyweight\n4) Middleweight\n5) Welterweight"
+            puts "1) Pound for Pound\n2) Heavyweight\n3) Light Heavyweight\n4) Middleweight\n5) Welterweight\n6) Lightweight\n7) Featherweight\n8) Bantamweight"
             choice = gets.chomp()
 
             case(choice)
@@ -77,6 +83,27 @@ class UfcCLI::CLI
                     welterweight
                 else
                     welterweight
+                end
+            when '6'
+                if @@o_lw == 0
+                    scrape_lw
+                    lightweight
+                else
+                    lightweight
+                end
+            when '7'
+                if @@o_fw == 0
+                    scrape_fw
+                    featherweight
+                else
+                    featherweight
+                end
+            when '8'
+                if @@o_bw == 0
+                    scrape_bw
+                    bantamweight
+                else
+                    bantamweight
                 end
             else
                 puts "Not an option. Please try again.."
@@ -312,6 +339,117 @@ class UfcCLI::CLI
         puts "UFC RANKINGS"
         puts "\n"
         puts doc.css("span.wisbb_leaderTitle")[4].text
+        while spots != 16
+            puts "#{fighter_rank.uniq[rank]}. #{fighter_names[name]}"
+                name += 1
+                rank += 1
+                spots += 1
+                @@o_lw = 1
+        end
+        fighter_names.clear
+        fighter_rank.clear
+        next_step
+    end
+
+    def scrape_lw
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        UfcCLI::Scraper.new.scrape_lightweights
+    end
+
+
+    def lightweight
+
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        # Fighter names
+        fighter_names = []
+        doc.css("span.wisbb_leaderName").each {|name| fighter_names << name.text}
+
+        # Rank
+        fighter_rank = []
+        doc.css("span.wisbb_leaderRank").each {|num|fighter_rank << num.text}
+        fighter_rank.insert(6, "6")
+
+        # Lightweight Rankings
+        name = 79
+        rank = 0
+        spots = 0
+        puts "UFC RANKINGS"
+        puts "\n"
+        puts doc.css("span.wisbb_leaderTitle")[5].text
+        while spots != 16
+            puts "#{fighter_rank.uniq[rank]}. #{fighter_names[name]}"
+                name += 1
+                rank += 1
+                spots += 1
+                @@o_lw = 1
+        end
+        fighter_names.clear
+        fighter_rank.clear
+        next_step
+    end
+
+    def scrape_fw
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        UfcCLI::Scraper.new.scrape_featherweights
+    end
+
+
+    def featherweight
+
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        # Fighter names
+        fighter_names = []
+        doc.css("span.wisbb_leaderName").each {|name| fighter_names << name.text}
+
+        # Rank
+        fighter_rank = []
+        doc.css("span.wisbb_leaderRank").each {|num|fighter_rank << num.text}
+        fighter_rank.insert(6, "6")
+
+        # Featherweight Rankings
+        name = 95
+        rank = 0
+        spots = 0
+        puts "UFC RANKINGS"
+        puts "\n"
+        puts doc.css("span.wisbb_leaderTitle")[6].text
+        while spots != 16
+            puts "#{fighter_rank.uniq[rank]}. #{fighter_names[name]}"
+                name += 1
+                rank += 1
+                spots += 1
+                @@o_lw = 1
+        end
+        fighter_names.clear
+        fighter_rank.clear
+        next_step
+    end
+
+    def scrape_bw
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        UfcCLI::Scraper.new.scrape_bantamweights
+    end
+
+
+    def bantamweight
+
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        # Fighter names
+        fighter_names = []
+        doc.css("span.wisbb_leaderName").each {|name| fighter_names << name.text}
+
+        # Rank
+        fighter_rank = []
+        doc.css("span.wisbb_leaderRank").each {|num|fighter_rank << num.text}
+        fighter_rank.insert(6, "6")
+
+        # Bantamweight Rankings
+        name = 111
+        rank = 0
+        spots = 0
+        puts "UFC RANKINGS"
+        puts "\n"
+        puts doc.css("span.wisbb_leaderTitle")[7].text
         while spots != 16
             puts "#{fighter_rank.uniq[rank]}. #{fighter_names[name]}"
                 name += 1

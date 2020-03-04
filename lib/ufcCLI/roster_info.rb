@@ -26,11 +26,6 @@ class UfcCLI::RosterInfo
         @@all
     end
 
-    def dc
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/daniel-cormier-fighter-stats"))
-        roc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/francis-ngannou-fighter-stats"))
-        binding.pry
-    end
 
     def self.new_fighter(link)
         doc = Nokogiri::HTML(open("https://www.foxsports.com#{link}"))
