@@ -1,4 +1,3 @@
-require 'pry'
 class UfcCLI::CLI
 
     # Name: doc.css("span.wisbb_leaderName").text
