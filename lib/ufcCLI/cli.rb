@@ -25,6 +25,7 @@ class UfcCLI::CLI
     @@o_pfp = 0
     @@o_lh = 0
     @@o_mw = 0
+    @@o_ww = 0
 
 
     def start
@@ -37,7 +38,7 @@ class UfcCLI::CLI
         if input  == "1"
 
             puts "Which weight class would you like to see?"
-            puts "1) Pound for Pound\n2) Heavyweight\n3) Light Heavyweight\n4) Middleweight"
+            puts "1) Pound for Pound\n2) Heavyweight\n3) Light Heavyweight\n4) Middleweight\n5) Welterweight"
             choice = gets.chomp()
 
             case(choice)
@@ -69,6 +70,13 @@ class UfcCLI::CLI
                     middleweight
                 else
                     middleweight
+                end
+            when '5'
+                if @@o_ww == 0
+                    scrape_ww
+                    welterweight
+                else
+                    welterweight
                 end
             else
                 puts "Not an option. Please try again.."
@@ -260,19 +268,56 @@ class UfcCLI::CLI
         doc.css("span.wisbb_leaderRank").each {|num|fighter_rank << num.text}
         fighter_rank.insert(6, "6")
 
-        # Light Heavyweight Rankings
+        # Middleweight Rankings
         name = 47
         rank = 0
         spots = 0
         puts "UFC RANKINGS"
         puts "\n"
-        puts doc.css("span.wisbb_leaderTitle")[2].text
+        puts doc.css("span.wisbb_leaderTitle")[3].text
         while spots != 16
             puts "#{fighter_rank.uniq[rank]}. #{fighter_names[name]}"
                 name += 1
                 rank += 1
                 spots += 1
                 @@o_lh = 1
+        end
+        fighter_names.clear
+        fighter_rank.clear
+        next_step
+    end
+
+    def scrape_ww
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        UfcCLI::Scraper.new.scrape_welterweights
+    end
+
+
+    def welterweight
+
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        # Fighter names
+        fighter_names = []
+        doc.css("span.wisbb_leaderName").each {|name| fighter_names << name.text}
+
+        # Rank
+        fighter_rank = []
+        doc.css("span.wisbb_leaderRank").each {|num|fighter_rank << num.text}
+        fighter_rank.insert(6, "6")
+
+        # Welterweight Rankings
+        name = 63
+        rank = 0
+        spots = 0
+        puts "UFC RANKINGS"
+        puts "\n"
+        puts doc.css("span.wisbb_leaderTitle")[4].text
+        while spots != 16
+            puts "#{fighter_rank.uniq[rank]}. #{fighter_names[name]}"
+                name += 1
+                rank += 1
+                spots += 1
+                @@o_lw = 1
         end
         fighter_names.clear
         fighter_rank.clear
