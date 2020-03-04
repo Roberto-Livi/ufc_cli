@@ -170,6 +170,42 @@ class UfcCLI::Scraper
         end
     end
 
+    def scrape_flyweights
+        puts "Loading UFC Flyweights"
+        time = 15
+        url = 127
+        count = 1
+        num_of_urls = 16
+        while count != num_of_urls
+            if self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/deiveson-alcantara-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/askar-askarov-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/timothy-elliott-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/jordan-espinosa-fighter-stats")
+                count += 1
+                url += 1
+            else
+                UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
+                puts time
+                time -= 1
+                count += 1
+                url += 1
+            end
+        end
+    end
+
+    def scrape_womens_bantamweights
+        puts "Loading UFC Women's Bantamweights"
+        time = 15
+        url = 142
+        count = 1
+        num_of_urls = 17
+        while count != num_of_urls
+            UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
+            puts time
+            time -= 1
+            count += 1
+            url += 1
+        end
+    end
+
+
 
 end
 

@@ -51,6 +51,7 @@ class UfcCLI::RosterInfo
         names = []
         @@all.each {|fighter| names << fighter.name}
         random_fighter = names.sample
+        puts ""
         puts "Guess the nickname of #{random_fighter}"
 
         input = gets.strip
@@ -64,11 +65,13 @@ class UfcCLI::RosterInfo
                 end
             end
         end
+        puts ""
         puts "Want to play again? y/n"
         choice = gets.strip
         if choice == "y"
             UfcCLI::RosterInfo.guess_fighters_nickname
         else
+            puts ""
             puts "Do you want to return to the main menu? y/n"
             x = gets.strip
             if x == "y"
@@ -82,6 +85,7 @@ class UfcCLI::RosterInfo
 
 
         def self.fighter_info
+            puts ""
             puts "Type name of fighter for info: "
             input = gets.strip
             @@all.detect do |fighter|
@@ -93,11 +97,13 @@ class UfcCLI::RosterInfo
                     puts "Weight Class: #{fighter.weight_class}"
                 end
             end
+            puts ""
             puts "Do you want to search for another fighters info? y/n"
             choice = gets.strip
             if choice == "y"
                 UfcCLI::RosterInfo.fighter_info
             else
+                puts ""
                 puts "Do you want to return to the main menu? y/n"
                 x = gets.strip
                 if x == "y"

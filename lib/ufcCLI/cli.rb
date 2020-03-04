@@ -44,7 +44,7 @@ class UfcCLI::CLI
         if input  == "1"
 
             puts "Which weight class would you like to see?"
-            puts "1) Pound for Pound\n2) Heavyweight\n3) Light Heavyweight\n4) Middleweight\n5) Welterweight\n6) Lightweight\n7) Featherweight\n8) Bantamweight"
+            puts "1) Pound for Pound\n2) Heavyweight\n3) Light Heavyweight\n4) Middleweight\n5) Welterweight\n6) Lightweight\n7) Featherweight\n8) Bantamweight\n9) Flyweight"
             choice = gets.chomp()
 
             case(choice)
@@ -105,6 +105,13 @@ class UfcCLI::CLI
                 else
                     bantamweight
                 end
+            when '9'
+                if @@o_flyweight == 0
+                    scrape_flyw
+                    flyweight
+                else
+                    flyweight
+                end
             else
                 puts "Not an option. Please try again.."
                 sleep 1
@@ -118,7 +125,12 @@ class UfcCLI::CLI
             choice_2 = gets.chomp()
             case(choice_2)
             when '1'
-                womens_bantamweight
+                if @@o_wb == 0
+                    scrape_w_bantamweights
+                    womens_bantamweight
+                else
+                    womens_bantamweight
+                end
             when '2'
                 womens_strawweight
             else
@@ -307,7 +319,7 @@ class UfcCLI::CLI
                 name += 1
                 rank += 1
                 spots += 1
-                @@o_lh = 1
+                @@o_mw = 1
         end
         fighter_names.clear
         fighter_rank.clear
@@ -344,7 +356,7 @@ class UfcCLI::CLI
                 name += 1
                 rank += 1
                 spots += 1
-                @@o_lw = 1
+                @@o_ww = 1
         end
         fighter_names.clear
         fighter_rank.clear
@@ -418,7 +430,7 @@ class UfcCLI::CLI
                 name += 1
                 rank += 1
                 spots += 1
-                @@o_lw = 1
+                @@o_fw = 1
         end
         fighter_names.clear
         fighter_rank.clear
@@ -455,11 +467,53 @@ class UfcCLI::CLI
                 name += 1
                 rank += 1
                 spots += 1
-                @@o_lw = 1
+                @@o_bw = 1
         end
         fighter_names.clear
         fighter_rank.clear
         next_step
+    end
+
+    def scrape_flyw
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        UfcCLI::Scraper.new.scrape_flyweights
+    end
+
+
+    def flyweight
+
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        # Fighter names
+        fighter_names = []
+        doc.css("span.wisbb_leaderName").each {|name| fighter_names << name.text}
+
+        # Rank
+        fighter_rank = []
+        doc.css("span.wisbb_leaderRank").each {|num|fighter_rank << num.text}
+        fighter_rank.insert(6, "6")
+
+        # Flyweight Rankings
+        name = 127
+        rank = 0
+        spots = 0
+        puts "UFC RANKINGS"
+        puts "\n"
+        puts doc.css("span.wisbb_leaderTitle")[8].text
+        while spots != 15
+            puts "#{fighter_rank.uniq[rank]}. #{fighter_names[name]}"
+                name += 1
+                rank += 1
+                spots += 1
+                @@o_flyweight = 1
+        end
+        fighter_names.clear
+        fighter_rank.clear
+        next_step
+    end
+
+    def scrape_w_bantamweights
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        UfcCLI::Scraper.new.scrape_womens_bantamweights
     end
 
     def womens_bantamweight
@@ -487,8 +541,11 @@ class UfcCLI::CLI
                 name += 1
                 rank += 1
                 spots += 1
+                @@o_wb = 1
         end
-
+        fighter_names.clear
+        fighter_rank.clear
+        next_step
     end
 
     def womens_strawweight
