@@ -1,15 +1,6 @@
-# First Name: soc.css("span.wisbb_firstName").text
-# Last Name: soc.css("span.wisbb_lastName").text
-# Nickname: soc.css(".wisbb_secondaryInfo span").children[0].text
-# D.O.B: doc.css(".wisbb_playerData td").children[1].text
-# Weight Class: soc.css(".wisbb_secondaryInfo span").children[2].text
-# Location: soc.css(".wisbb_playerData tr").children[13].text.strip
-# Reach: soc.css(".wisbb_playerData tr").children[18].text
-# Stance: soc.css(".wisbb_playerData tr").children[23].text
-
 class UfcCLI::RosterInfo
 
-    attr_accessor :name, :dob, :nickname, :weight_class, :location, :reach, :stance
+    attr_accessor :name, :dob, :nickname, :weight_class, :location, :stance
 
     @@all = []
 
@@ -113,8 +104,6 @@ class UfcCLI::RosterInfo
                 end
             end
         end
-
-    # custom instance methods if needed
 
 end
 

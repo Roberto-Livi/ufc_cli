@@ -1,23 +1,11 @@
 require 'pry'
 class UfcCLI::CLI
 
-    # start should greet user, maybe give desc
-    # get data from scraper/api file
-    # create new custom objs
-    # all inside start method
-
     # Name: doc.css("span.wisbb_leaderName").text
     # Name: doc.css("span.wisbb_leaderName")[28].text
     # Weight Class: doc.css("span.wisbb_leaderTitle").text
     # Record: doc.css("span.wisbb_leaderValue").text
     # Rank: doc.css("span.wisbb_leaderRank").text
-
-    # Profile Url:  # name.first.css("a").first.attributes["href"].value
-        # doc.css("span.wisbb_leaderName").css("a")[1].attributes["href"].value
-
-    # # Weight Class
-    # weight_class = []
-    # doc.css("span.wisbb_leaderTitle").each {|weight| weight_class << weight.text}
 
 
     @@o_h = 0
@@ -114,7 +102,6 @@ class UfcCLI::CLI
                 end
             else
                 puts "Not an option. Please try again.."
-                sleep 1
                 start
             end
 
@@ -132,12 +119,19 @@ class UfcCLI::CLI
                     womens_bantamweight
                 end
             when '2'
-                womens_strawweight
+                if @@o_ws == 0
+                    scrape_w_strawweights
+                    womens_strawweight
+                else
+                    womens_strawweight
+                end
             else
-                puts "Not an option"
+                puts "Not an option, please try again"
+                start
             end
         else
-            puts "Not an option"
+            puts "Not an option, please try again"
+            start
         end
 
     end
@@ -548,6 +542,11 @@ class UfcCLI::CLI
         next_step
     end
 
+    def scrape_w_strawweights
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        UfcCLI::Scraper.new.scrape_womens_strawweights
+    end
+
     def womens_strawweight
 
         doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
@@ -573,7 +572,11 @@ class UfcCLI::CLI
                 name += 1
                 rank += 1
                 spots += 1
+                @@o_ws = 1
         end
+        fighter_names.clear
+        fighter_rank.clear
+        next_step
     end
 
 
@@ -581,61 +584,8 @@ end
 
 
 
-        # doc.css("div.wisbb_leaderList").each do |project|
-
-        #     weight_class = project.css("span.wisbb_leaderTitle")[0].text
-        #     fighter_name = project.css("span.wisbb_leaderName")[0].text
-        #     fighter_rank = project.css("span.wisbb_leaderRank")[0].text
-        #     fighter_record = project.css("span.wisbb_leaderValue")[0].text
-
-        # fighter_cards << {:name => fighter_name, :weight => weight_class, :rank => fighter_rank, :record => fighter_record}
-
-        # end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#     def start
-#         puts "Hello there!"
-#         puts "GETTING DATA FROM API ... PLEASE WAIT"
-#         @objects = UfcCLI::Stuff.all
-#         display_info
-#     end
-
-#     def display_info
-#         puts "please make selection:"
-#         input = gets.strip.downcase
-#         if input == "actors"
-#             puts "==========ACTORS LIST=============="
-#             puts "LIST OF ACTORS/OBJS"
-#             # 1. Tom Crusie
-#             # 2. Anne Hathway
-#         elsif input == "movies"
-#             puts "==========MOVIES LIST=============="
-#             puts "LIST OF MOVIES/OBJS"
-#         else
-#             quit
-#         end
-#     end
-
-#     def quit
-#         puts "goodbye"
-#     end
 
 # end
 
