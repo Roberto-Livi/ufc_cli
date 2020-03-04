@@ -3,4 +3,6 @@
 require "bundler/setup"
 require "ufcCLI"
 
+# UfcCLI::CLI.new.call
+# UfcCLI::RosterInfo.new.dc
 UfcCLI::CLI.new.start

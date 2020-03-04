@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["robertomlivi@outlook.com"]
 
   spec.summary       = "Simple Ruby CLI app"
-  spec.description   = "Use API data to get a list of SOMETHING"
+  spec.description   = "Displays the UFC Rankings"
   spec.homepage      = "https://github.com/Roberto-Livi/ufc_cli"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
@@ -27,4 +27,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "pry"
+  spec.add_development_dependency "httparty"
+  spec.add_development_dependency "nokogiri"
 end
