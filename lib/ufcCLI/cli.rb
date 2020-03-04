@@ -22,6 +22,7 @@ class UfcCLI::CLI
     @@all_fighters = []
     @@o_h = 0
     @@o_pfp = 0
+    @@o_lh = 0
 
 
     def start
@@ -36,8 +37,6 @@ class UfcCLI::CLI
             puts "Which weight class would you like to see?"
             puts "1) Pound for Pound\n2) Heavyweight\n3) Light Heavyweight"
             choice = gets.chomp()
-
-
 
             case(choice)
 
@@ -56,9 +55,18 @@ class UfcCLI::CLI
                     heavyweight
                 end
             when '3'
-                light_heavyweight
+                if @@o_lh == 0
+                    scrape_lh
+                    light_heavyweight
+                else
+                    light_heavyweight
+                end
+            when '4'
+                puts "Goodbye"
             else
-                puts "Not an option"
+                puts "Not an option. Please try again.."
+                sleep 1
+                start
             end
 
         elsif input == "2"
@@ -93,9 +101,11 @@ class UfcCLI::CLI
         when '3'
             UfcCLI::RosterInfo.guess_fighters_nickname
         when '4'
-            UfcCLI::RosterInfo.all_names
-        else
             puts "Goodbye"
+        else
+            puts "Not an option. Please try again.."
+            sleep 1
+            next_step
         end
 
     end
@@ -188,6 +198,11 @@ class UfcCLI::CLI
         next_step
     end
 
+    def scrape_lh
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        UfcCLI::Scraper.new.scrape_light_heavyweights
+    end
+
 
     def light_heavyweight
 
@@ -213,7 +228,11 @@ class UfcCLI::CLI
                 name += 1
                 rank += 1
                 spots += 1
+                @@o_lh = 1
         end
+        fighter_names.clear
+        fighter_rank.clear
+        next_step
     end
 
     def womens_bantamweight

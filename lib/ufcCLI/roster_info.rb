@@ -91,6 +91,7 @@ class UfcCLI::RosterInfo
             input = gets.strip
             @@all.detect do |fighter|
                 if fighter.name.downcase == input.downcase
+                    puts "\n"
                     puts "Date of Birth #{fighter.dob}"
                     puts "Nickname: #{fighter.nickname}"
                     puts "Location: #{fighter.location}"

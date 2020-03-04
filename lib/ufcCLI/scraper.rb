@@ -59,23 +59,19 @@ class UfcCLI::Scraper
         end
     end
 
+
     def scrape_light_heavyweights
         puts "Loading UFC Light Heavyweights"
-        time = 14
-        url = 16
+        time = 15
+        url = 31
         count = 1
         num_of_urls = 16
         while count != num_of_urls
-            if self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value.include?("/ufc/alex-volkanovski-fighter-stats")
-                count += 1
-                url += 1
-            else
-                UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-                puts time
-                time -= 1
-                count += 1
-                url += 1
-            end
+            UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
+            puts time
+            time -= 1
+            count += 1
+            url += 1
         end
     end
 
