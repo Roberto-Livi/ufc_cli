@@ -216,5 +216,3 @@ class UfcCLI::Scraper
     end
 
 end
-
-

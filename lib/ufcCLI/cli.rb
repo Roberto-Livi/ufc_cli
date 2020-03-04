@@ -24,11 +24,11 @@ class UfcCLI::CLI
 
     def start
 
-            puts "Welcome UFC fans!"
-            puts "GETTING DATA FROM API ... PLEASE WAIT"
-            doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
-            puts "Which division do you want to see?\n1) Men\n2) Women"
-            input = gets.chomp()
+        puts "Welcome UFC fans!"
+        puts "GETTING DATA FROM API ... PLEASE WAIT"
+        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
+        puts "Which division do you want to see?\n1) Men\n2) Women"
+        input = gets.chomp()
         if input  == "1"
 
             puts "Which weight class would you like to see?"
