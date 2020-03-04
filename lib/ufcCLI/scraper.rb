@@ -215,8 +215,6 @@ class UfcCLI::Scraper
         end
     end
 
-
-
 end
 
-# self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/weili-zhang-fighter-stats") || self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value.include?("/ufc/amanda-ribas-fighter-stats")
+
