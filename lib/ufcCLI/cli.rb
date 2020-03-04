@@ -581,25 +581,3 @@ class UfcCLI::CLI
 
 
 end
-
-
-
-
-
-
-# end
-
-    # deal with inputs(loop to keep asking to get new info)
-    # EX. while input != "exit" do
-    # display a list of something, or give examples of what we expect as input
-    # get user input
-    # depending on what we get, do something
-    # condition to check input or good value
-    # else tell them try again
-
-    # exit command
-    # if input == "EXIT"
-    # kill program. say goodbye
-
-
-
