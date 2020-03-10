@@ -167,7 +167,6 @@ class UfcCLI::CLI
     end
 
     def scrape_hw
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_heavyweights
     end
 
@@ -204,7 +203,6 @@ class UfcCLI::CLI
     end
 
     def scrape_pfp
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_pound_for_pound
     end
 
@@ -241,7 +239,6 @@ class UfcCLI::CLI
     end
 
     def scrape_lh
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_light_heavyweights
     end
 
@@ -278,7 +275,6 @@ class UfcCLI::CLI
     end
 
     def scrape_mw
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_middleweights
     end
 
@@ -315,7 +311,6 @@ class UfcCLI::CLI
     end
 
     def scrape_ww
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_welterweights
     end
 
@@ -352,7 +347,6 @@ class UfcCLI::CLI
     end
 
     def scrape_lw
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_lightweights
     end
 
@@ -389,7 +383,6 @@ class UfcCLI::CLI
     end
 
     def scrape_fw
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_featherweights
     end
 
@@ -426,7 +419,6 @@ class UfcCLI::CLI
     end
 
     def scrape_bw
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_bantamweights
     end
 
@@ -463,7 +455,6 @@ class UfcCLI::CLI
     end
 
     def scrape_flyw
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_flyweights
     end
 
@@ -500,7 +491,6 @@ class UfcCLI::CLI
     end
 
     def scrape_w_bantamweights
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_womens_bantamweights
     end
 
@@ -537,7 +527,6 @@ class UfcCLI::CLI
     end
 
     def scrape_w_strawweights
-        doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
         UfcCLI::Scraper.new.scrape_womens_strawweights
     end
 
