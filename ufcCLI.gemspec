@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["robertomlivi@outlook.com"]
 
   spec.summary       = "Simple Ruby CLI app"
-  spec.description   = "Displays the UFC Rankings, Fighter's info, and has a game where you can guess a random fighters nickname"
+  spec.description   = "Displays the UFC Rankings, Fighter's info, and a game where you can guess a random fighters nickname"
   spec.homepage      = "https://github.com/Roberto-Livi/ufc_cli"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 

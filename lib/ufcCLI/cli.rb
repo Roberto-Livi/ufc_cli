@@ -174,7 +174,6 @@ class UfcCLI::CLI
     def heavyweight
 
         doc = Nokogiri::HTML(open("https://www.foxsports.com/ufc/rankings"))
-        # UFcCLI::Scraper.new.scrape_fighters_url
         # Fighter names
         fighter_names = []
         doc.css("span.wisbb_leaderName").each {|name| fighter_names << name.text}
@@ -183,10 +182,6 @@ class UfcCLI::CLI
         fighter_rank = []
         doc.css("span.wisbb_leaderRank").each {|num|fighter_rank << num.text}
         fighter_rank.insert(6, "6")
-
-        # # Record
-        # records = []
-        # doc.css("span.wisbb_leaderValue").each {|record| records << record.text}
 
         # Heavyweight Rankings
         name = 0
