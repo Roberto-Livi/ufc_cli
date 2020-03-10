@@ -18,7 +18,7 @@ class UfcCLI::Scraper
 
     def scrape_heavyweights
         puts "Loading UFC Heavyweights"
-        time = 13
+        countdown = 13
         count = 0
         num_of_urls = 14
         while count != num_of_urls
@@ -26,8 +26,8 @@ class UfcCLI::Scraper
                 count += 1
             else
                 UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[count].attributes["href"].value)
-                puts time
-            time -= 1
+                puts countdown
+            countdown -= 1
             count += 1
             end
         end
@@ -35,7 +35,7 @@ class UfcCLI::Scraper
 
     def scrape_pound_for_pound
         puts "Loading the best Pound for Pound fighters in UFC"
-        time = 14
+        countdown = 14
         url = 16
         count = 1
         num_of_urls = 16
@@ -45,8 +45,8 @@ class UfcCLI::Scraper
                 url += 1
             else
                 UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-                puts time
-                time -= 1
+                puts countdown
+                countdown -= 1
                 count += 1
                 url += 1
             end
@@ -56,14 +56,14 @@ class UfcCLI::Scraper
 
     def scrape_light_heavyweights
         puts "Loading UFC Light Heavyweights"
-        time = 15
+        countdown = 15
         url = 31
         count = 1
         num_of_urls = 17
         while count != num_of_urls
             UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-            puts time
-            time -= 1
+            puts countdown
+            countdown -= 1
             count += 1
             url += 1
         end
@@ -71,7 +71,7 @@ class UfcCLI::Scraper
 
     def scrape_middleweights
         puts "Loading UFC Middleweights"
-        time = 15
+        countdown = 15
         url = 47
         count = 1
         num_of_urls = 17
@@ -81,8 +81,8 @@ class UfcCLI::Scraper
                 url += 1
             else
                 UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-                puts time
-                time -= 1
+                puts countdown
+                countdown -= 1
                 count += 1
                 url += 1
             end
@@ -91,14 +91,14 @@ class UfcCLI::Scraper
 
     def scrape_welterweights
         puts "Loading UFC Welterweights"
-        time = 15
+        countdown = 15
         url = 63
         count = 1
         num_of_urls = 17
         while count != num_of_urls
             UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-            puts time
-            time -= 1
+            puts countdown
+            countdown -= 1
             count += 1
             url += 1
         end
@@ -106,7 +106,7 @@ class UfcCLI::Scraper
 
     def scrape_lightweights
         puts "Loading UFC Lightweights"
-        time = 15
+        countdown = 15
         url = 79
         count = 1
         num_of_urls = 17
@@ -116,8 +116,8 @@ class UfcCLI::Scraper
                 url += 1
             else
                 UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-                puts time
-                time -= 1
+                puts countdown
+                countdown -= 1
                 count += 1
                 url += 1
             end
@@ -126,7 +126,7 @@ class UfcCLI::Scraper
 
     def scrape_featherweights
         puts "Loading UFC Featherweights"
-        time = 15
+        countdown = 15
         url = 95
         count = 1
         num_of_urls = 17
@@ -136,8 +136,8 @@ class UfcCLI::Scraper
                 url += 1
             else
                 UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-                puts time
-                time -= 1
+                puts countdown
+                countdown -= 1
                 count += 1
                 url += 1
             end
@@ -146,7 +146,7 @@ class UfcCLI::Scraper
 
     def scrape_bantamweights
         puts "Loading UFC Men's Bantamweights"
-        time = 15
+        countdown = 15
         url = 111
         count = 1
         num_of_urls = 17
@@ -156,8 +156,8 @@ class UfcCLI::Scraper
                 url += 1
             else
                 UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-                puts time
-                time -= 1
+                puts countdown
+                countdown -= 1
                 count += 1
                 url += 1
             end
@@ -166,7 +166,7 @@ class UfcCLI::Scraper
 
     def scrape_flyweights
         puts "Loading UFC Flyweights"
-        time = 15
+        countdown = 15
         url = 127
         count = 1
         num_of_urls = 17
@@ -176,8 +176,8 @@ class UfcCLI::Scraper
                 url += 1
             else
                 UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-                puts time
-                time -= 1
+                puts countdown
+                countdown -= 1
                 count += 1
                 url += 1
             end
@@ -186,14 +186,14 @@ class UfcCLI::Scraper
 
     def scrape_womens_bantamweights
         puts "Loading UFC Women's Bantamweights"
-        time = 15
+        countdown = 15
         url = 142
         count = 1
         num_of_urls = 17
         while count != num_of_urls
             UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-            puts time
-            time -= 1
+            puts countdown
+            countdown -= 1
             count += 1
             url += 1
         end
@@ -201,14 +201,14 @@ class UfcCLI::Scraper
 
     def scrape_womens_strawweights
         puts "Loading UFC Women's Strawweights"
-        time = 14
+        countdown = 14
         url = 159
         count = 1
         num_of_urls = 15
         while count != num_of_urls
             UfcCLI::RosterInfo.new_fighter(self.rankings_page.css("span.wisbb_leaderName").css("a")[url].attributes["href"].value)
-            puts time
-            time -= 1
+            puts countdown
+            countdown -= 1
             count += 1
             url += 1
         end
